@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/calculator")
 public class MathController {
     
-    @GetMapping("/basicoperations/{strNumberOne}/{operator}/{strNumberTwo}")   
+    @GetMapping("/basicoperations/{operator}/{strNumberOne}/{strNumberTwo}")   
     public Double operacoesBasicas(@PathVariable String strNumberOne, @PathVariable String operator, @PathVariable String strNumberTwo){
         if(!isNumeric(strNumberOne) || (!isNumeric(strNumberTwo))){
             throw new UnsuportedMathOperationExceptione("Parametro tem que ser do tipo númerico");
@@ -53,13 +53,13 @@ public class MathController {
         return Math.sqrt(num);
     }
 
-    @GetMapping("/average/{strNumberOne}/{strNumberTwo}")
-    public Double getMethodName(@PathVariable String strNumberOne, @PathVariable String strNumberTwo) {
-        if(!isNumeric(strNumberOne) || (!isNumeric(strNumberTwo))){
+    @GetMapping("/average/{strNumberOne}/{strNumberTwo}/{strNumberThree}")
+    public Double getMethodName(@PathVariable String strNumberOne, @PathVariable String strNumberTwo, @PathVariable String strNumberThree) {
+        if(!isNumeric(strNumberOne) || (!isNumeric(strNumberTwo)) || (!isNumeric(strNumberThree)) ){
             throw new UnsuportedMathOperationExceptione("Parâmetro tem que ser do tipo numérico");
         }
 
-        return (convertToDouble(strNumberOne) + convertToDouble(strNumberTwo))/2; 
+        return (convertToDouble(strNumberOne) + convertToDouble(strNumberTwo) + convertToDouble(strNumberThree))/3; 
     }
     
 
